@@ -1,0 +1,11 @@
+.env
+env
+venv
+*.pyo
+*.pyc
+/staticfiles
+.idea
+data.json
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+/reports
