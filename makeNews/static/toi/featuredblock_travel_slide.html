@@ -1,0 +1,339 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+       html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	-webkit-text-size-adjust: none;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+em {
+    font-style: italic;
+}
+@font-face {
+    font-family: 'proximanova';
+    src: url('/fonts/proxima_nova_regular_1.eot');
+    src: url('/fonts/proxima_nova_regular_1.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/proxima_nova_regular_1.woff') format('woff'),
+         url('/fonts/proxima_nova_regular_1.ttf') format('truetype'),
+         url('/fonts/proxima_nova_regular_1.svg#proxima-regular1') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+	font-size: 100.01%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+
+body {
+	font-size: 62.5%;
+	line-height: 1em;
+	font-family: proximanova; font-weight: normal;
+	color: #333333;
+	position: relative;
+}
+
+html, body {
+	width: 100%;
+}
+
+/* Remove margins for navigation lists */
+
+
+
+
+
+input[type="radio"] {
+	vertical-align: text-bottom;
+}
+input[type="checkbox"] {
+	vertical-align: bottom;
+}
+input[type="submit"]{-webkit-appearance:none;}
+.iem7 input[type="checkbox"] {
+	vertical-align: baseline;
+}
+
+/* Hand cursor on clickable input elements */
+
+
+
+label, input[type="button"], input[type="submit"], input[type="image"], button {
+	cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	line-height: 1.2em;
+}
+
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+/* Images and Default Classes  */
+
+
+
+img {
+	max-width: 100%;
+	vertical-align: bottom;
+}
+
+
+ul, ol {
+	list-style: none;
+}
+li {
+	line-height: 1.2em;
+}
+li ul, li ol {
+	margin-bottom: 0px;
+}
+/*
+
+
+
+        * Clearing Methods
+
+
+
+        */
+
+.pointer {
+	cursor: pointer;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	font-size: 0;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	display: block;
+}
+.floatbox {
+	overflow: hidden;
+}
+.clear {
+	clear: both;
+	height: 1px;
+	line-height: 1px;
+}
+/*
+
+        /*---- Floats ----*/
+
+
+
+.flR {
+	float: right;
+}
+.flL {
+	float: left;
+}
+/*---- Horizontal Alignment ----*/
+
+.alR {
+	text-align: right;
+}
+.alC {
+	text-align: center;
+}
+/*---- Hide ----*/
+
+
+
+.hide {
+	display: none;
+}
+b, strong {
+	font-weight: bold;
+}
+    
+</style><script src="featuredblock_travel_slide_data/jquery.js" type="text/javascript"></script><script>										 
+					$(function(){
+						$.fn.rkslider = function(btnNext,btnPrev,auto,scrollwidth,holderwidth,percol,dots,dotsId){
+						
+							// Variable initialization
+							var appliedDiv = $(this);
+							var totalLI = appliedDiv.find('ul li').size();
+							
+							if(percol != ''){
+								var rotation = Math.ceil(totalLI/percol);
+							}else{
+								var rotation = totalLI;
+							}
+							
+							var totalW = totalLI * holderwidth;
+							var lastIMG = '-'+(totalW - holderwidth*percol);
+							var interval;
+							var slideClick = 1;
+							
+							appliedDiv.find('ul').css('width',totalW);
+							
+							// Next Click
+							$(btnNext).click(function(e){
+								e.preventDefault();
+								if(slideClick < rotation){
+									appliedDiv.find('ul').animate({
+										left:'-='+scrollwidth
+									},500);
+									
+									slideClick++;
+								}else if(slideClick == rotation){
+									appliedDiv.find('ul').animate({
+										left:'0'
+									},1000);
+									
+									slideClick = 1;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+								//console.log(totalLI+' = '+slideClick);
+							});
+							
+							// Previous Click
+							$(btnPrev).click(function(e){
+								e.preventDefault();
+								if(slideClick > 1){
+									appliedDiv.find('ul').animate({
+										left:'+='+scrollwidth
+									},500);
+									
+									slideClick--;
+								}else if(slideClick == 1){
+									appliedDiv.find('ul').animate({
+										left:lastIMG
+									},1000);
+									
+									slideClick=rotation;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+								//console.log(totalLI+' = '+slideClick);
+							});
+							
+							if(auto == 'true'){
+								// Interval
+								interval = setInterval(function(){
+									//$(btnNext).click();
+									if(slideClick < rotation){
+									appliedDiv.find('ul').animate({
+										left:'-='+scrollwidth
+									},500);
+									
+									slideClick++;
+								}else if(slideClick == rotation){
+									appliedDiv.find('ul').animate({
+										left:'0'
+									},1000);
+									
+									slideClick = 1;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+								},5000);
+								
+								// Pause on mouse enter
+								$(this).bind('mouseenter', function(){
+									clearInterval(interval);
+									interval = null;
+								});
+								
+								// Set Interval back on mouse leave
+								$(this).bind('mouseleave', function(){
+									interval = setInterval(function(){															
+										//$(btnNext).click();
+											if(slideClick < rotation){
+									appliedDiv.find('ul').animate({
+										left:'-='+scrollwidth
+									},500);
+									
+									slideClick++;
+								}else if(slideClick == rotation){
+									appliedDiv.find('ul').animate({
+										left:'0'
+									},1000);
+									
+									slideClick = 1;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+										
+									},5000);
+								})
+								
+							}
+							
+							if(dots == 'yes'){
+								$(dotsId).find('ul li:first').addClass('current');
+							}
+							
+							// Dots Click
+							if(dots == 'yes'){
+								$(dotsId).find('ul li a').click(function(e){
+									e.preventDefault();
+									$(dotsId).find('ul li.current').removeClass('current');
+									
+									var currentDot = $(dotsId).find('ul li').index($(this).parent());
+									appliedDiv.find('ul').animate({
+										left:'-'+(scrollwidth*currentDot)
+									},500);
+									$(this).parent().addClass('current');
+									
+									slideClick = (currentDot+1);
+								});
+							}
+										
+						};
+					});
+				</script><style>
+				
+					.homePicgallery_block, .homePicgallery_block *{box-sizing: border-box}
+					.homePicgallery_block{border:none;background:none;float:left;position:relative;width:256px;}
+					.homePicgallery_block .btnPrev{background-position:-3px -804px;height:50px;left:16px;position:absolute;top:125px;width:26px;z-index:200;display:none;}
+					.homePicgallery_block .btnNext{background-position:1px -865px;height:50px;position:absolute;right:-1px;top:125px;width:26px;z-index:201;display:none;}
+					.homePicgallery_block .picGallery{overflow:hidden;position:relative;width:256px;height:83px;}
+					.homePicgallery_block .picGallery ul{list-style:none;position:absolute;top:0;}
+					.homePicgallery_block .picGallery ul li{float:left;position:relative;width:256px;height:83px;}
+					.homePicgallery_block .picGallery ul li a{text-decoration:none;width:100%;}
+					.homePicgallery_block .picGallery ul li a img{float:left;width:80px;height:60px; margin-right: 15px}
+					.homePicgallery_block .picGallery ul li a span{color:#1a1a1a;cursor:pointer;display:block;font-size:16px;font-weight:normal;line-height:20px; margin:0;padding:0; height: 60px; overflow: hidden}
+					#dotsblk{position: absolute; top: 70px; left: 50%; transform: translateX(-50%); -webkit-transform: translateX(-50%);}
+					#dotsblk ul{float:left;list-style:none;margin:0;padding:0;}
+					#dotsblk ul li{float:left;overflow:hidden;position:relative;width:6px;height:6px;margin:0 2px;}
+					#dotsblk ul li a{border:1px solid #5e5e5e;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;background-clip: padding-box;cursor:pointer;position:absolute;top:0;width:6px;height:6px;}
+					#dotsblk ul li:hover a, #dotsblk ul li.current a{background:#5e5e5e;border-radius:50%;cursor:pointer;width:6px;height:6px;}
+				</style></head><body><div class="homePicgallery_block"><a href="#" class="btnPrev nbtsprite2" pg="preapop"></a><a href="#" class="btnNext nbtsprite2" pg="nxtpop"></a><div id="homePicGallery" class="rkslider picGallery"><ul style="width: 2560px; left: -768px;"><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/7-gorgeous-pictures-from-rajasthan-that-will-make-you-fall-in-love-with-the-state/ss65912760.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="7 gorgeous pictures from Rajasthan that will make you fall in love with the state!" alt="7 gorgeous pictures from Rajasthan that will make you fall in love with the state!" src="featuredblock_travel_slide_data/65912669.jpeg" width="96" height="83"><span>7 gorgeous pictures from Rajasthan that will make you fall in love with the state!</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/these-pictures-of-indian-heritage-sites-will-amaze-you-beyond-words/ss65967523.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="These pictures of Indian heritage sites will amaze you beyond words!" alt="These pictures of Indian heritage sites will amaze you beyond words!" src="featuredblock_travel_slide_data/65967169.jpeg" width="96" height="83"><span>These pictures of Indian heritage sites will amaze you beyond words!</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/stunning-photos-from-northeast-india-to-make-you-a-travel-addict/ss65622787.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="Stunning photos from Northeast India to make you a travel addict" alt="Stunning photos from Northeast India to make you a travel addict" src="featuredblock_travel_slide_data/65622786.jpeg" width="96" height="83"><span>Stunning photos from Northeast India to make you a travel addict</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/autumn-goals-places-you-should-not-miss-visiting-when-its-autumn-in-india/ss65794012.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="Autumn goals: Places you should not miss visiting when it’s autumn in India" alt="Autumn goals: Places you should not miss visiting when it’s autumn in India" src="featuredblock_travel_slide_data/65794010.jpeg" width="96" height="83"><span>Autumn goals: Places you should not miss visiting when it’s autumn in India</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/eating-out/the-pictures-say-it-all-9-tempting-thali-meals-from-the-states-of-india/ss65794235.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="The pictures say it all - 9 tempting thali meals from the states of India" alt="The pictures say it all - 9 tempting thali meals from the states of India" src="featuredblock_travel_slide_data/65794234.jpeg" width="96" height="83"><span>The pictures say it all - 9 tempting thali meals from the states of India</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/things-to-do/diwali-shopping-in-delhi-can-be-fun-if-you-know-where-to-go/as60838124.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="Diwali shopping in Delhi can be fun, if you know where to go" alt="Diwali shopping in Delhi can be fun, if you know where to go" src="featuredblock_travel_slide_data/60838124.jpeg" width="96" height="83"><span>Diwali shopping in Delhi can be fun, if you know where to go</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/tomb-of-legendary-lovers-heer-and-ranjha/as66460644.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="Tomb of legendary lovers Heer and Ranjha" alt="Tomb of legendary lovers Heer and Ranjha" src="featuredblock_travel_slide_data/66460644.jpeg" width="96" height="83"><span>Tomb of legendary lovers Heer and Ranjha</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/haunted-indian-roads-that-you-should-avoid/as66461777.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="Haunted Indian roads that you should avoid!" alt="Haunted Indian roads that you should avoid!" src="featuredblock_travel_slide_data/66461777.jpeg" width="96" height="83"><span>Haunted Indian roads that you should avoid!</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/a-day-trip-to-mesmerising-sonmarg-in-kashmir/as66121640.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="A day-trip to mesmerising Sonmarg in Kashmir" alt="A day-trip to mesmerising Sonmarg in Kashmir" src="featuredblock_travel_slide_data/66121640.jpeg" width="96" height="83"><span>A day-trip to mesmerising Sonmarg in Kashmir</span></a></li><li><a rel="nofollow" pg="mostreadlnk1" target="_blank" href="https://timesofindia.indiatimes.com/travel/destinations/a-walk-through-kolkatas-colonial-past/as65474867.cms?utm_source=ArticleWidget&amp;utm_medium=referral&amp;utm_campaign=TOILinkbacks"><img pg="mostreadlnk1" title="A walk through Kolkata’s colonial past" alt="A walk through Kolkata’s colonial past" src="featuredblock_travel_slide_data/65474867.jpeg" width="96" height="83"><span>A walk through Kolkata’s colonial past</span></a></li></ul><script>	
+					$(function(){
+					var st=$("#homePicGallery ul li").length;
+					var string="";for(var i=0;i<st;i++){string+='<li class=""><a href="#"></a></li>';}$("#dotsblk ul").html(string);
+						$('#homePicGallery').rkslider('.homePicgallery_block .btnNext','.homePicgallery_block .btnPrev','true','256','256','1','yes','#dotsblk');
+					});
+				</script></div><span id="dotsblk"><ul><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class="current"><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li></ul></span></div></body></html>

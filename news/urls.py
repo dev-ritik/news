@@ -25,4 +25,5 @@ urlpatterns = [
     path(r'^admin/', admin.site.urls),
     path('makeNews/', include('makeNews.urls')),
     path('', RedirectView.as_view(url='/makeNews/')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

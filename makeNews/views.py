@@ -11,5 +11,6 @@ def index(request):
         'num_books': "1",
     }
 
+
     # Render the HTML template index.html with the data in the context variable
-    return render(request, 'index.html', context=context)
+    return render(request, 'toi.html', context=context)

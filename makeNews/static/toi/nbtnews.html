@@ -1,0 +1,194 @@
+<html xmlns:msxsl="http://exslt.org/common" class=" gecko linux js" lang="hi"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta content="hi" http-equiv="Content-Language"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>
+		  var _comscore = _comscore || [];
+             var objComScore = { c1: "2", c2: "6036484"};
+             function firecomscore(){
+                 // for EU user
+                 if(Get_Ckie('optout') !== undefined){
+                        if (Get_Ckie('ckns_policy') != undefined){
+                           objComScore['cs_ucfr'] = 1;
+                       }else{ 
+                           objComScore['cs_ucfr'] = 0;
+                       }
+                 }
+                 _comscore.push(objComScore);
+                 (function() {
+                   var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+                   s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+                   s.rel = 'dns-prefetch';
+                   el.parentNode.insertBefore(s, el);
+                 })();
+             }
+             firecomscore();
+		   
+		</script><noscript><img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=6036484&amp;cv=2.0&amp;cj=1"></noscript><script type="text/javascript" src="version-14minify-1.js"></script><script>										 
+					$(function(){
+						$.fn.rkslider = function(btnNext,btnPrev,auto,scrollwidth,holderwidth,percol,dots,dotsId){
+						
+							// Variable initialization
+							var appliedDiv = $(this);
+							var totalLI = appliedDiv.find('ul li').size();
+							
+							if(percol != ''){
+								var rotation = Math.ceil(totalLI/percol);
+							}else{
+								var rotation = totalLI;
+							}
+							
+							var totalW = totalLI * holderwidth;
+							var lastIMG = '-'+(totalW - holderwidth*percol);
+							var interval;
+							var slideClick = 1;
+							
+							appliedDiv.find('ul').css('width',totalW);
+							
+							// Next Click
+							$(btnNext).click(function(e){
+								e.preventDefault();
+								if(slideClick < rotation){
+									appliedDiv.find('ul').animate({
+										left:'-='+scrollwidth
+									},500);
+									
+									slideClick++;
+								}else if(slideClick == rotation){
+									appliedDiv.find('ul').animate({
+										left:'0'
+									},1000);
+									
+									slideClick = 1;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+								//console.log(totalLI+' = '+slideClick);
+							});
+							
+							// Previous Click
+							$(btnPrev).click(function(e){
+								e.preventDefault();
+								if(slideClick > 1){
+									appliedDiv.find('ul').animate({
+										left:'+='+scrollwidth
+									},500);
+									
+									slideClick--;
+								}else if(slideClick == 1){
+									appliedDiv.find('ul').animate({
+										left:lastIMG
+									},1000);
+									
+									slideClick=rotation;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+								//console.log(totalLI+' = '+slideClick);
+							});
+							
+							if(auto == 'true'){
+								// Interval
+								interval = setInterval(function(){
+									//$(btnNext).click();
+									if(slideClick < rotation){
+									appliedDiv.find('ul').animate({
+										left:'-='+scrollwidth
+									},500);
+									
+									slideClick++;
+								}else if(slideClick == rotation){
+									appliedDiv.find('ul').animate({
+										left:'0'
+									},1000);
+									
+									slideClick = 1;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+								},5000);
+								
+								// Pause on mouse enter
+								$(this).bind('mouseenter', function(){
+									clearInterval(interval);
+									interval = null;
+								});
+								
+								// Set Interval back on mouse leave
+								$(this).bind('mouseleave', function(){
+									interval = setInterval(function(){															
+										//$(btnNext).click();
+											if(slideClick < rotation){
+									appliedDiv.find('ul').animate({
+										left:'-='+scrollwidth
+									},500);
+									
+									slideClick++;
+								}else if(slideClick == rotation){
+									appliedDiv.find('ul').animate({
+										left:'0'
+									},1000);
+									
+									slideClick = 1;
+								}
+								
+								if(dots == 'yes'){
+									$(dotsId).find('ul li.current').removeClass('current');
+									$(dotsId).find('ul li:eq('+(slideClick-1)+')').addClass('current');
+								}
+										
+									},5000);
+								})
+								
+							}
+							
+							if(dots == 'yes'){
+								$(dotsId).find('ul li:first').addClass('current');
+							}
+							
+							// Dots Click
+							if(dots == 'yes'){
+								$(dotsId).find('ul li a').click(function(e){
+									e.preventDefault();
+									$(dotsId).find('ul li.current').removeClass('current');
+									
+									var currentDot = $(dotsId).find('ul li').index($(this).parent());
+									appliedDiv.find('ul').animate({
+										left:'-'+(scrollwidth*currentDot)
+									},500);
+									$(this).parent().addClass('current');
+									
+									slideClick = (currentDot+1);
+								});
+							}
+										
+						};
+					});
+				</script><style>
+body,ul, ul li,p{margin:0;padding:0}
+body{background:none;}
+h1, h1 a{color:#000;font-size:14px;font-weight:bold;line-height:18px;}
+h1 a span{color:#044e97;font-weight:bold;}
+h1 a strong {background:url("/photo/30666887.cms") no-repeat scroll -14px -726px rgba(0, 0, 0, 0);width:7px;height:13px;vertical-align:top;margin-top:3px;display:inline-block;}
+.homePicgallery_block{border:none;background:none;float:left;position:relative;width:284px;}
+.homePicgallery_block {padding: 0 0 24px 0;}
+.nbtsprite2 {background-image: url(/photo/51006581.cms);background-repeat: no-repeat;background-color: none !important;}
+.homePicgallery_block .btnPrev{background-position:-3px -804px;height:50px;left:16px;position:absolute;top:125px;width:26px;z-index:200;display:none;}
+.homePicgallery_block .btnNext{background-position:1px -865px;height:50px;position:absolute;right:-1px;top:125px;width:26px;z-index:201;display:none;}
+.homePicgallery_block .picGallery{overflow:hidden;position:relative;width:260px;height:83px;}
+.homePicgallery_block .picGallery ul{list-style:none;position:absolute;top:0;}
+.homePicgallery_block .picGallery ul li{float:left;position:relative;width:260px;height:83px;}
+.homePicgallery_block .picGallery ul li a{text-decoration:none;width:100%;}
+.homePicgallery_block .picGallery ul li a img{float:left;}
+.homePicgallery_block .picGallery ul li a span{color:#000;cursor:pointer;display:block;float:right;font-size:16px;font-weight:normal;line-height:23px;width:164px;margin:0;padding:0;}
+#dotsblk{position:absolute;bottom: 25px;left:98px;width:122px;}
+#dotsblk ul{float:left;list-style:none;margin:0;padding:0;}
+#dotsblk ul li{float:left;overflow:hidden;position:relative;width:6px;height:6px;margin:0 2px;}
+#dotsblk ul li a{border-radius:100%;-webkit-border-radius:100%;-moz-border-radius:100%;cursor:pointer;position:absolute;top:0;width:6px;height:6px;border:1px #5e5e5e solid;box-sizing:border-box}
+#dotsblk ul li:hover a, #dotsblk ul li.current a{ border:1px #5e5e5e solid;background: #5e5e5e;border-radius:100%;cursor:pointer;width:6px;height:6px;box-sizing:border-box}
+</style></head><body><div class="homePicgallery_block"><a pg="preapop" class="btnPrev nbtsprite2" href="#"></a><a pg="nxtpop" class="btnNext nbtsprite2" href="#"></a><div class="rkslider picGallery" id="homePicGallery"><ul style="width: 1820px; left: -1040px;"><li><a target="_blank" pg="#Story_View/1~RHS-Nbt_Widget" href="https://navbharattimes.indiatimes.com/metro/lucknow/politics/vedanti-says-construction-of-ram-temple-will-begin-in-december-while-kp-maurya-is-talking-about-statue/articleshow/66486825.cms?utm_source=TOInewAS_TILwidget&amp;utm_medium=Referral&amp;utm_campaign=Internalreferral"><img src="nbtnews_data/66486825.jpeg" alt="राम मंदिर पर रामदेव बोले- SC में होगी देर तो आएगा बिल" title="राम मंदिर पर रामदेव बोले- SC में होगी देर तो आएगा बिल" width="80" height="60"><span>राम मंदिर पर रामदेव बोले- SC में होगी देर तो आएगा बिल</span></a></li><li><a target="_blank" pg="#Story_View/2~RHS-Nbt_Widget" href="https://navbharattimes.indiatimes.com/state/other-states/other-cities/section-144-to-be-imposed-in-sannidhanam-pamba-and-nearby-places-of-sabarimala-temple/articleshow/66484752.cms?utm_source=TOInewAS_TILwidget&amp;utm_medium=Referral&amp;utm_campaign=Internalreferral"><img src="nbtnews_data/66484752.jpeg" alt="सबरीमाला: खुलेगा द्वार, 5000 जवान होंगे तैनात" title="सबरीमाला: खुलेगा द्वार, 5000 जवान होंगे तैनात" width="80" height="60"><span>सबरीमाला: खुलेगा द्वार, 5000 जवान होंगे तैनात</span></a></li><li><a target="_blank" pg="#Story_View/3~RHS-Nbt_Widget" href="https://navbharattimes.indiatimes.com/metro/lucknow/other-news/deputy-cm-of-uttar-pradesh-keshav-prasad-maurya-says-ram-temple-matter-is-sub-judice-before-supreme-court-we-can-not-do-anything/articleshow/66486530.cms?utm_source=TOInewAS_TILwidget&amp;utm_medium=Referral&amp;utm_campaign=Internalreferral"><img src="nbtnews_data/66486530.jpeg" alt="राम मंदिर पर यूपी सरकार, हम कुछ नहीं कर सकते " title="राम मंदिर पर यूपी सरकार, हम कुछ नहीं कर सकते " width="80" height="60"><span>राम मंदिर पर यूपी सरकार, हम कुछ नहीं कर सकते </span></a></li><li><a target="_blank" pg="#Story_View/4~RHS-Nbt_Widget" href="https://navbharattimes.indiatimes.com/education/gk-/facts-about-laika-the-first-dog-in-space/articleshow/66485170.cms?utm_source=TOInewAS_TILwidget&amp;utm_medium=Referral&amp;utm_campaign=Internalreferral"><img src="nbtnews_data/66485170.jpeg" alt="अंतरिक्ष में पहला जानवर, पढ़ें पूरी रोचक कहानी" title="अंतरिक्ष में पहला जानवर, पढ़ें पूरी रोचक कहानी" width="80" height="60"><span>अंतरिक्ष में पहला जानवर, पढ़ें पूरी रोचक कहानी</span></a></li><li><a target="_blank" pg="#Story_View/5~RHS-Nbt_Widget" href="https://navbharattimes.indiatimes.com/business/business-news/these-are-the-reasons-why-rupay-bothers-mastercard/articleshow/66486214.cms?utm_source=TOInewAS_TILwidget&amp;utm_medium=Referral&amp;utm_campaign=Internalreferral"><img src="nbtnews_data/66486214.jpeg" alt="RuPay पर मास्टरकार्ड क्यों लाल, समझें पूरी बात" title="RuPay पर मास्टरकार्ड क्यों लाल, समझें पूरी बात" width="80" height="60"><span>RuPay पर मास्टरकार्ड क्यों लाल, समझें पूरी बात</span></a></li><li><a target="_blank" pg="#Story_View/6~RHS-Nbt_Widget" href="https://navbharattimes.indiatimes.com/tech/gadgets-news/thousands-of-hacked-facebook-accounts-and-private-messages-up-for-sale-reveals-a-report/articleshow/66484757.cms?utm_source=TOInewAS_TILwidget&amp;utm_medium=Referral&amp;utm_campaign=Internalreferral"><img src="nbtnews_data/66484757.jpeg" alt="फेसबुक पर बेचे जा रहे हैं आपके पर्सनल मेसेज!" title="फेसबुक पर बेचे जा रहे हैं आपके पर्सनल मेसेज!" width="80" height="60"><span>फेसबुक पर बेचे जा रहे हैं आपके पर्सनल मेसेज!</span></a></li><li><a target="_blank" pg="#Story_View/7~RHS-Nbt_Widget" href="https://navbharattimes.indiatimes.com/state/bihar/patna/tej-pratap-yadav-on-divorce-says-that-it-is-not-good-to-live-suffocating-life/articleshow/66486294.cms?utm_source=TOInewAS_TILwidget&amp;utm_medium=Referral&amp;utm_campaign=Internalreferral"><img src="nbtnews_data/66486294.jpeg" alt="तलाक पर तेज, घुट- घुटकर जीने से क्या फायदा" title="तलाक पर तेज, घुट- घुटकर जीने से क्या फायदा" width="80" height="60"><span>तलाक पर तेज, घुट- घुटकर जीने से क्या फायदा</span></a></li></ul></div><span id="dotsblk"><ul><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class=""><a href="#"></a></li><li class="current"><a href="#"></a></li><li><a href="#"></a></li><li><a href="#"></a></li></ul></span></div><script>$(function(){$('#homePicGallery').rkslider('.homePicgallery_block .btnNext','.homePicgallery_block .btnPrev','true','260','260','1','yes','#dotsblk');});</script></body></html>
