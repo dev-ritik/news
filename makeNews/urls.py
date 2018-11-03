@@ -3,6 +3,6 @@ from makeNews import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    # path('toi/<slug:foo>', views.Toi.as_view(), name='news-display'),
-    path('toi/<slug:foo>', views.Page, name='page'),
+    path('error/', views.error, name='error'),
+    path('toi/<slug:foo>', views.page, name='page'),
 ]

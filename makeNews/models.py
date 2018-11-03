@@ -23,12 +23,5 @@ class FakeNews(models.Model):
         return json.loads(self.highlights)
 
     def __str__(self):
-        # field_values = []
-        # for field in self._meta.get_fields():
-        #     print(field.name)
-        #     print(field)
-        #     field_values.append(str(getattr(self, field.name, '')))
-        # return ' '.join(field_values)
-
-        return str(self.date)
+        return str(self.headline)
 
