@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from makeNews.models import FakeNews
+
+admin.site.register(FakeNews)
