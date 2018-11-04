@@ -178,7 +178,7 @@
                 ga('set', 'contentGroup1', 'ArticleShowNewPerpetualScroll');
 
 
-                  var __ag = "PTI";
+                  var __ag = "{{ fakeNews.author }}";
 
                     ga('set', 'dimension5', __ag);
 
@@ -1194,7 +1194,7 @@ Click to watch</div></div></div></a></div></div><div class="mCSB_scrollTools"
                                 Honduras and Guatemala – who are currently marching towards the southern
                                 US border of Mexico with the intention to enter the US.
                             </div>
-                            <span class="time_cptn"><span itemprop="author"><span>PTI</span></span> | <span>Updated:{{ fakeNews.date }}<time
+                            <span class="time_cptn"><span itemprop="author"><span>{{ fakeNews.author }}</span></span> | <span>Updated:{{ fakeNews.date }}<time
                                     datetime="2018-11-03T12:07:02+05:30"></time><meta
                                     content="2018-11-03T12:07:02+05:30"></span></span>
                             <div class="leftsocial sticky">
@@ -1294,14 +1294,18 @@ Click to watch</div></div></div></a></div></div><div class="mCSB_scrollTools"
                                                                    oncontextmenu="return false;"><div
                                 class="mCSB_dragger_bar" style="position:relative;"></div></div><div
                                 class="mCSB_draggerRail"></div></div></div></div></span></span><img
-                                src="{% static 'toi/66486252.jpg' %}" data-imgid="66486252"
-                                alt="US President Donald Trump (File photo)"
-                                title="US President Donald Trump (File photo)"><span class="img_cptn">US President Donald Trump (File photo)</span>
+                                src="{{ fakeNews.imageUrl }}"
+                                data-imgid="66486252"
+                                alt="{{ fakeNews.imageCaption }} (File photo)"
+                                title="{{ fakeNews.imageCaption }} (File photo)"><span class="img_cptn">{{ fakeNews.imageCaption }} (File photo)</span>
                         </section>
+
+                                                        <!--src="{% static 'toi/66486252.jpg' %}" for trump image-->
+
                         <div class="article_content clearfix">
                             <arttextxml>
                                 <div class="section1">
-                                    <div class="Normal">WASHINGTON: US President <a class="key_underline"
+                                    <div class="Normal">{{ fakeNews.place }}: US President <a class="key_underline"
                                                                                     href="https://timesofindia.indiatimes.com/topic/Donald-Trump"
                                                                                     pg="AS1_InlineMedia#AS1_https://timesofindia.indiatimes.com/business/international-business/trump-shows-sympathy-for-those-waiting-for-green-cards-says-theyll-enter-us/articleshow/66473136.cms~Donald Trump-https://timesofindia.indiatimes.com/topic/Donald-Trump">Donald
                                         Trump</a>
@@ -3351,7 +3355,7 @@ Bangladeshis are to be given citizenship so that they congress rascals.</span><s
              _ibeat_config[_ibeat_articleid]['_iBeat_subcat']=trim('International Business');
              _ibeat_config[_ibeat_articleid]['_iBeat_articledt']="Nov 2, 2018, 13:13 IST";
              _ibeat_config[_ibeat_articleid]['_iBeat_author']="";
-             _ibeat_config[_ibeat_articleid]['_iBeat_channel'] ="PTI";
+             _ibeat_config[_ibeat_articleid]['_iBeat_channel'] ="{{ fakeNews.author }}";
              _ibeat_config[_ibeat_articleid]['_iBeat_position'] = " ";
              _ibeat_config[_ibeat_articleid]['_iBeat_LastPublishMilliTime'] = 1541234012093;
 
