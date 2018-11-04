@@ -9,6 +9,10 @@ from makeNews.models import FakeNews
 
 
 def index(request):
+    return render(request, 'welcome.html')
+
+
+def makeNews(request):
     # If this is a POST request then process the Form data
     # book_instance = get_object_or_404(FakeNews)
     newNews = FakeNews()
