@@ -15,10 +15,8 @@ def index(request):
 
 def makeNews(request):
     # If this is a POST request then process the Form data
-    # book_instance = get_object_or_404(FakeNews)
     newNews = FakeNews()
     print("index")
-    # print(book_instance)
 
     if request.method == 'POST':
         print("post")
@@ -69,7 +67,6 @@ def error(request):
 
 def page(request, slug):
     print(slug)
-    print("page")
 
     input = unquote(slug)
     headline = input.replace('-', ' ')
@@ -87,12 +84,10 @@ def page(request, slug):
 
 
 class Toi(generic.DetailView):
-    print("here1")
     model = FakeNews
 
     def news_display_view(request, slug):
         print(slug)
-        print("news_display_view")
         try:
             fakenews = FakeNews.objects.get(highlight2=slug)
         except FakeNews.DoesNotExist:
