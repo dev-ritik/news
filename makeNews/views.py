@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 
 from makeNews.forms import NewNewsForm
 from makeNews.models import FakeNews
+from urllib.parse import unquote
 
 
 def index(request):
@@ -36,9 +37,14 @@ def makeNews(request):
             newNews.newsContent = new_news_form.cleaned_data['news_content']
             newNews.headline = new_news_form.cleaned_data['headline']
             newNews.date = datetime.now()
+            newNews.place = new_news_form.cleaned_data['place']
+            newNews.author = new_news_form.cleaned_data['author']
+            newNews.imageCaption = new_news_form.cleaned_data['imageCaption']
+            newNews.imageUrl = new_news_form.cleaned_data['imageUrl']
             newNews.save()
 
-            urlcode = new_news_form.cleaned_data.get('highlight2')
+            headlineurl = newNews.headline.replace(' ', '-')
+            urlcode = headlineurl
             print("valid!!!")
             # redirect to a new URL:
             return HttpResponseRedirect('/makeNews/toi/' + urlcode)
@@ -61,12 +67,19 @@ def error(request):
     return render(request, '404error.html', context={'fakeNews': 1})
 
 
-def page(request, foo):
-    print(foo)
+def page(request, slug):
+    print(slug)
     print("page")
 
+    input = unquote(slug)
+    headline = input.replace('-', ' ')
+
+    print(headline)
+    # if not isinstance(time, datetime.datetime):
+    #     return HttpResponseRedirect('/makeNews/error/')
+
     try:
-        fakenews = FakeNews.objects.get(highlight2=foo)
+        fakenews = FakeNews.objects.get(headline=headline)
     except FakeNews.DoesNotExist:
         return HttpResponseRedirect('/makeNews/error/')
 
@@ -77,11 +90,11 @@ class Toi(generic.DetailView):
     print("here1")
     model = FakeNews
 
-    def news_display_view(request, foo):
-        print(foo)
+    def news_display_view(request, slug):
+        print(slug)
         print("news_display_view")
         try:
-            fakenews = FakeNews.objects.get(highlight2=foo)
+            fakenews = FakeNews.objects.get(highlight2=slug)
         except FakeNews.DoesNotExist:
             raise Http404('FakeNews does not exist')
 

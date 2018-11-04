@@ -11,7 +11,12 @@ class NewNewsForm(forms.Form):
     headline = forms.CharField(max_length=200, help_text='Enter a headline')
     highlight1 = forms.CharField(max_length=200, help_text='Enter highlight1')
     highlight2 = forms.CharField(max_length=200, help_text='Enter highlight2')
+    place = forms.CharField(max_length=80, help_text='Enter the place')
+    author = forms.CharField(max_length=50, help_text='Enter the author')
     link = forms.CharField(max_length=200, help_text='Enter a link')
+    imageUrl = forms.URLField(help_text='Enter a image url')
+    imageCaption = forms.CharField(max_length=100, help_text='Enter a image caption')
+
     print("NewNewsForm")
 
     def clean_news_time(self):
